@@ -67,14 +67,15 @@ source $VIMRUNTIME/menu.vim
 set ambiwidth=double
 language messages zh_CN.utf-8
 
+autocmd! bufwritepost $VIMRC source %		        "vimrc保存时自动加载
+
 "Key Mapping
 map <silent> <leader>ee :e $VIMRC<CR>               "加载vimrc文件
 source $VIMRUNTIME/mswin.vim
 nnoremap <C-tab> :bn<CR>                            "Ctrl-Tab
 nnoremap <C-s-tab> :bp<CR>                          "Ctrl-Shift-Tab
 nnoremap <C-F4> :bd<CR>
-autocmd! bufwritepost $VIMRC source %		        "vimrc保存时自动加载
-map <F5> :call RunMe()
+map <F5> :call RunMe()<CR>
 
 "CtrlP key mapping
 let g:ctrlp_custom_ignore = {
