@@ -22,10 +22,11 @@ call vundle#end()
 "normal config
 filetype plugin indent on                           "侦测文件类型, 载入文件类型插件, 为特定文件类型载入相关缩进文件
 syntax on                                           "语法高亮
-colorscheme solarized								"主题
+set background=dark
+colorscheme solarized                               "主题
 
-set guifont=Inziu_1mn_SC:h16						"字体
-set guioptions-=m									"隐藏菜单栏
+set guifont=Inziu_1mn_SC:h16                        "字体
+set guioptions-=m                                   "隐藏菜单栏
 set guioptions-=T                                   "隐藏工具栏
 set guioptions-=r                                   "关闭右侧滚动条
 
@@ -33,7 +34,7 @@ set autochdir                                       "自动切换当前目录为
 set nobackup                                        "不产生备份文件
 set showmatch                                       "光标短暂的调到匹配的括号处
 set formatoptions+=mM                               "中文字符的折行与拼接
-set nu												"显示行号
+set nu                                              "显示行号
 "set ru                                             "显示标尺
 set cursorline                                      "突出显示当前行
 set ai
@@ -56,9 +57,9 @@ set softtabstop=4                                   "设置tab所占的列数，
 set smarttab                                        "按下Backspace键可以删除tab键的空格
 set expandtab                                       "扩展tab为空格
 
-set wildmenu										"增强命令补全
+set wildmenu                                        "增强命令补全
 
-set helplang=cn										"中文帮助
+set helplang=cn                                     "中文帮助
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,latin1,euc-jp,euc-kr
 set fileencoding=utf-8
@@ -67,7 +68,7 @@ source $VIMRUNTIME/menu.vim
 set ambiwidth=double
 language messages zh_CN.utf-8
 
-autocmd! bufwritepost $VIMRC source %		        "vimrc保存时自动加载
+autocmd! bufwritepost $VIMRC source %               "vimrc保存时自动加载
 
 "Key Mapping
 map <silent> <leader>ee :e $VIMRC<CR>               "加载vimrc文件
@@ -88,7 +89,7 @@ let g:ctrlp_custom_ignore = {
 "nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
 if has("win32")
-	au GUIEnter * simalt ~x							"默认最大化窗口
+    au GUIEnter * simalt ~x                         "默认最大化窗口
     set termencoding=cp936
 endif
 
