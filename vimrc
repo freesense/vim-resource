@@ -69,9 +69,18 @@ language messages zh_CN.utf-8
 
 "Key Mapping
 map <silent> <leader>ee :e $VIMRC<CR>               "加载vimrc文件
+source $VIMRUNTIME/mswin.vim
 nnoremap <C-tab> :bn<CR>                            "Ctrl-Tab
 nnoremap <C-s-tab> :bp<CR>                          "Ctrl-Shift-Tab
+nnoremap <C-F4> :bd<CR>
 autocmd! bufwritepost $VIMRC source %		        "vimrc保存时自动加载
+map <F5> :call RunMe()
+
+"CtrlP key mapping
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
 
 "bufferhint key mapping
 "nnoremap - :call bufferhint#Popup()<CR>
@@ -88,5 +97,31 @@ function! FileSize()
         return 0
     else
         return bytes
+    endif
+endfunction
+
+function! RunMe()
+    let file_name = expand("%:p")
+    let file_ext = expand("%:e")
+    let file_cmd = ""
+
+    "python 直接调用
+    if file_ext == "py" || file_ext == "pyw"
+        let file_cmd = file_name
+
+    "c 提取第一行的编译命令
+    elseif file_ext == "c" || file_ext == "cpp"
+        let file_first_line = getline(1)
+        if strpart(file_first_line, 0, 2) == '//'
+            let file_cmd = strpart(file_first_line, 2) "提取参数
+        endif
+
+    endif
+
+    if file_cmd != ""
+        if executable(file_cmd)
+            let cmd = "! " . file_cmd
+            exec cmd
+        endif
     endif
 endfunction
